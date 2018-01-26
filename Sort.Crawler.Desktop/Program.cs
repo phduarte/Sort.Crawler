@@ -9,25 +9,18 @@ namespace Sort.Crawler.Desktop {
         static void Main(string[] args) {
 
             var servico = ApplicationServices.Instance;
-            ExcluirPastaHtmlSeExistir();
 
             servico.OnStatusChanged += status =>  Console.Title = status;
             servico.OnFound += EscreverLog;
             servico.Atualizar();
 
+            Console.Beep();
+            Console.Beep();
             //AbrirArquivoDeCache();
         }
 
         private static void EscreverLog(ISorteio sorteio) {
             Screen.Success($"Coletado resultados do sorteio {sorteio.Data.ToShortDateString()} ({string.Join("-", sorteio.Resultados)})");
-        }
-
-        private static void ExcluirPastaHtmlSeExistir() {
-            try {
-                Directory.Delete("html", true);
-            } catch (IOException ex) {
-                Debug.WriteLine(ex.Message);
-            }
         }
 
         private static void AbrirArquivoDeCache() {
