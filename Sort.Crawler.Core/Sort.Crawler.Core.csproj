@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0208BD5B-A03C-4D31-A3BD-82041E922A0A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sort.Crawler.Core</RootNamespace>
+    <AssemblyName>Sort.Crawler.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.6.13\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ionic.Zip.1.9.1.8\lib\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebDriver">
+      <HintPath>..\packages\Selenium.WebDriver.3.8.0\lib\net45\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\packages\Selenium.Support.3.8.0\lib\net45\WebDriver.Support.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DomainModel\Entidade.cs" />
+    <Compile Include="DomainModel\Identidade.cs" />
+    <Compile Include="DomainModel\IEntidade.cs" />
+    <Compile Include="DomainModel\IReadOnlyRepository.cs" />
+    <Compile Include="DomainModel\IRepository.cs" />
+    <Compile Include="DomainModel\Loterias\ColetorNaoDefinidoException.cs" />
+    <Compile Include="DomainModel\Loterias\ExportadorNaoDefinidoException.cs" />
+    <Compile Include="DomainModel\Loterias\IExportadorStrategy.cs" />
+    <Compile Include="DomainModel\Loterias\ILoteria.cs" />
+    <Compile Include="DomainModel\Loterias\LoteriaAtualizadoState.cs" />
+    <Compile Include="DomainModel\Loterias\SorteioEncontrado.cs" />
+    <Compile Include="DomainModel\Loterias\IColetorStrategy.cs" />
+    <Compile Include="DomainModel\Loterias\ILoteriaRepository.cs" />
+    <Compile Include="DomainModel\Loterias\Loteria.cs" />
+    <Compile Include="DomainModel\Loterias\ILoteriaState.cs" />
+    <Compile Include="DomainModel\Loterias\LoteriaAgendadoState.cs" />
+    <Compile Include="DomainModel\Loterias\LoteriaAtrasadoState.cs" />
+    <Compile Include="DomainModel\Loterias\LoteriaAtualizandoState.cs" />
+    <Compile Include="DomainModel\Loterias\StatusAlterado.cs" />
+    <Compile Include="DomainModel\Loterias\TipoDeExportacao.cs" />
+    <Compile Include="DomainModel\Loterias\TipoLoteria.cs" />
+    <Compile Include="DomainModel\Sorteios\ISorteio.cs" />
+    <Compile Include="DomainModel\Sorteios\Resultado.cs" />
+    <Compile Include="DomainModel\Sorteios\ISorteioRepository.cs" />
+    <Compile Include="DomainModel\Sorteios\ResultadoBicho.cs" />
+    <Compile Include="DomainModel\Sorteios\Sorteio.cs" />
+    <Compile Include="Infrastructure\Services\Coletores\BichoStrategy.cs" />
+    <Compile Include="Infrastructure\Services\Coletores\ColetorBase.cs" />
+    <Compile Include="Infrastructure\Services\Coletores\ColetorFactory.cs" />
+    <Compile Include="Infrastructure\Services\Coletores\MassCashStrategy.cs" />
+    <Compile Include="Infrastructure\Services\Coletores\MassLotteryStrategy.cs" />
+    <Compile Include="Infrastructure\Services\Coletores\MegaMillionsStrategy.cs" />
+    <Compile Include="Infrastructure\Services\Coletores\CaixaEconomicaStrategy.cs" />
+    <Compile Include="Infrastructure\Services\Coletores\PowerBallStrategy.cs" />
+    <Compile Include="Infrastructure\Services\Coletores\TheLotterStrategy.cs" />
+    <Compile Include="Infrastructure\Data\LoteriaRepository.cs" />
+    <Compile Include="Infrastructure\Data\SorteioRepository.cs" />
+    <Compile Include="Infrastructure\Services\Exportadores\ExportadorFactory.cs" />
+    <Compile Include="Infrastructure\Services\Exportadores\FlatFileStrategy.cs" />
+    <Compile Include="Infrastructure\Services\Exportadores\HtmlStrategy.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DomainModel\Loterias\LoteriaServices.cs" />
+    <Compile Include="ApplicationServices.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
