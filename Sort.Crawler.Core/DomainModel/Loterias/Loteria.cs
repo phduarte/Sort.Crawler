@@ -91,8 +91,8 @@ namespace Sort.Crawler.Core.DomainModel.Loterias {
             _coletor.QuandoEncontrar += QuandoEncontrar;
         }
 
-        public void DefinirExportador(IExportadorStrategy exportador) {
-            _exportador = exportador;
+        public void DefinirExportador(IExportadorStrategy exportadorStrategy) {
+            _exportador = exportadorStrategy;
         }
 
         #endregion

@@ -52,8 +52,8 @@ namespace Sort.Crawler.Core.Infrastructure.Data {
             return _cache.Where(predicate);
         }
 
-        public IEnumerable<ISorteio> FindBy(ILoteria premio) {
-            return _cache.Where(x => x.Loteria.Id == premio.Id);
+        public IEnumerable<ISorteio> FindBy(ILoteria loteria) {
+            return _cache.Where(x => x.Loteria.Id == loteria.Id);
         }
 
         public ISorteio Get(Identidade id) {

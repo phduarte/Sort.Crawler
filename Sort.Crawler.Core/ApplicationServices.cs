@@ -13,6 +13,8 @@ namespace Sort.Crawler.Core {
 
     public class ApplicationServices {
 
+        TipoDeExportacao tipoExportacao = TipoDeExportacao.FlatFile;
+
         #region singleton
 
         static ApplicationServices _instance;
@@ -36,7 +38,7 @@ namespace Sort.Crawler.Core {
 
             OnStatusChanged?.Invoke("Processo de atualização iniciado.");
             
-            ExcluirPastaHtmlSeExistir();
+            ExcluirPastaDestinoSeExistir();
 
             var loterias = WaitingList();
 
@@ -46,7 +48,7 @@ namespace Sort.Crawler.Core {
                     OnStatusChanged?.Invoke($"Coletando dados da loteria {loteria.Nome}");
                     loteria.QuandoEncontrar += OnFound;
                     loteria.DefinirColetor(ColetorFactory.Create(driver, loteria.Nome));
-                    loteria.DefinirExportador(ExportadorFactory.Create(TipoDeExportacao.Html));
+                    loteria.DefinirExportador(ExportadorFactory.Create(tipoExportacao));
                     loteria.Coletar();
                     loteria.ExportarAsync(loteria.Nome);
                 }
@@ -57,9 +59,15 @@ namespace Sort.Crawler.Core {
             OnStatusChanged?.Invoke("Processo de atualizado concluído.");
         }
 
-        void ExcluirPastaHtmlSeExistir() {
+        void ExcluirPastaDestinoSeExistir() {
             try {
                 Directory.Delete("html", true);
+            } catch (IOException ex) {
+                OnStatusChanged?.Invoke(ex.Message);
+            }
+
+            try {
+                Directory.Delete("txt", true);
             } catch (IOException ex) {
                 OnStatusChanged?.Invoke(ex.Message);
             }

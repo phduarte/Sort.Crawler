@@ -7,7 +7,7 @@ using System.Linq;
 namespace Sort.Crawler.Core.Infrastructure.Data {
     internal class LoteriaRepository : ILoteriaRepository {
 
-        static IList<Loteria> _cache = LoadCache();
+        static IList<ILoteria> _cache = LoadCache();
 
         public LoteriaRepository() {
         }
@@ -32,11 +32,11 @@ namespace Sort.Crawler.Core.Infrastructure.Data {
             return _cache;
         }
 
-        static IList<Loteria> LoadCache() {
+        static IList<ILoteria> LoadCache() {
 
             var sorteioRepository = new SorteioRepository();
 
-            var lista = new List<Loteria>{
+            return new List<ILoteria>{
                     new Loteria(sorteioRepository) {
                         Nome = "Mass Cash",
                         DiasDeSorteio = new List<DayOfWeek> { { DayOfWeek.Wednesday }, { DayOfWeek.Saturday } },
@@ -200,8 +200,6 @@ namespace Sort.Crawler.Core.Infrastructure.Data {
                         Tipo = TipoLoteria.Combinada
                     }
             };
-
-            return lista;
         }
     }
 }

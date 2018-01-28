@@ -21,7 +21,7 @@ namespace Sort.Crawler.Core.DomainModel.Loterias {
 
         void Coletar();
         void DefinirColetor(IColetorStrategy coletorStrategy);
-        void DefinirExportador(IExportadorStrategy exportador);
+        void DefinirExportador(IExportadorStrategy exportadorStrategy);
         void Exportar(string destino);
         void ExportarAsync(string destino);
     }
